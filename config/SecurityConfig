@@ -12,38 +12,44 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
-@AllArgsConstructor
-public class SecurityConfig {
-    @Autowired
-    MemberService memberService;
+@Configuration // Spring에서 이 클라스가 설정 클라스로 사용됨을 명시
+@EnableWebSecurity // Spring Security 활성화
+@AllArgsConstructor //모든 필드에 대해 생성자를 자동으로 생성하는 Lombok annotation
+public class SecurityConfig /* 로그인 등 보안 기능 인증, 인가하는 Class */ {
+    @Autowired // Spring Container에 등록된 것 연결
+    MemberService /* 보안 설정에서 필요한 서비스 */ memberService; // MemberService DI
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    @Bean // 이 메소드가 Spring Context에서 관리되는 Bean임
+    public SecurityFilterChain // Spring Security에서 요청이 들어왔을 때 보안 관련 필터들이 차례대로 적용되게 구성된 필터 체인 -> HTTP 요청을 가로채고 사용자가 적절히 인증되었는지 확인, 접근 권한 부여 및 차단
+    filterChain // SecurityFilterChain 반환하는 메소드 이름, HttpSecurity 객체를 통해 보안 규칙 설정 후 그 설정을 기반으로 SecurityFilterChain 생성 및 반환, 애플리케이션 전체 보안 정책 정의
+    (HttpSecurity /* Spring Security에서 HTTP 요청에 대한 보안 설정을 구성하는 클라스 */ http) throws Exception /* 이 메소드에서 발생가능한 예외 선언, 예외 전파: 메소드 내에서 발생한 Exception을 호출한 상위 메소드로 전파(filterCahin 메소드 내부에서 예외 발생 시 처리하지 않고 상위에서 처리하게 함{
 
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint());
-                // 비인가 사용자가 리소스 접근 시 수행되는 핸들러
+                // 비인가 사용자가 리소스 접근 시 수행되는 핸들러 -> 비인가자: 로그인 페이지로 리다이렉, 401 반환 등
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    } // 패스워드 암호화 및 비교
 
-    @Bean
+    @Bean // Spring Security의 필터 체인을 구성하는 또 다른 SecurityFilterChain Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .usernameParameter("email")
-                .failureUrl("/login?error=true")
-                .and
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
+    // Spring Security의 로그인, 로그아웃 관련 설정 구성
+    	http.formLogin() // form 기반 인증 사용
+    					.loginPage("/login") // 로그인 페이지 경로 설정
+    					.defaultSuccessUrl("/") // 로그인 성공 시 이동할 기본 경로 설정
+    					.usernameParameter("email") //로그인 폼에서 사용자 이름으로 사용할 파라미터 설정 (email)
+    					.failureUrl("/login?error=true") // 로그인 실패 시 이동할 경로 설정, 에러 메시지 포함
+    					.and() // Method Chaining을 위한 연결
+    					.logout() // 로그아웃 설정 시작
+    					.logoutRequestMatcher(new AntPathRequestMatcher("/logout") // 로그아웃 URL 설정
+    					.logoutSuccessUrl("/") // 로그아웃 성공 시 이동할 경로 설정
+    					.invalidateHttpSession(true) //로그아웃 시 세션 무효화
+    					.deleteCookies("JSESSIONID"); // 로그아웃 시 JSESSIONID 쿠키 삭제
+    	return http.build(); // 설정이 완료된 SecurityFilterChain 인스턴스 반환
     }
 
 }
