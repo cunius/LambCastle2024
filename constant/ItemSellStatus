@@ -1,6 +1,6 @@
-package com.lambcastle.lambcastle.constant;
+package com.lambcastle.lambcastle.constant; // 이 패키지에 속하는 Class임
 
 public enum ItemSellStatus {
-    SELL, SOLD_OUT
+    SELL, SOLD_OUT // enum의 열거형 상수, 현재 아이템의 판매 상태
 
 }
