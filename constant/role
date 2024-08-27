@@ -1,5 +1,5 @@
 package com.lambcastle.lambcastle.constant;
 
 public enum Role {
-    USER, ADMIN
+    USER, ADMIN // enum의 열거형 상수, 사용자 구분
 }
