@@ -3,66 +3,33 @@ package com.lamb.duck18.controller;
 import com.lamb.duck18.dto.UserRegisterDto;
 import com.lamb.duck18.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class UserController {
     @Autowired
     private UserService userService;
+//    private String username;
+//    private String password;
+//    private String email;
+//    private String birthdate;
+//    private String address;
 
-    @PostMapping("/register")
-    public String registerUser(@ModelAttribute UserRegisterDto userRegisterDto) {
-        userService.registerNewUser(
-                userRegisterDto.getUsername(),
-                userRegisterDto.getPassword(),
-                userRegisterDto.getEmail(),
-                userRegisterDto.getBirthdate(),
-                userRegisterDto.getAddress()
-        );
-        return "redirect:/";
+    @PostMapping("/signup")
+    public ResponseEntity<?> registerUser (@RequestBody UserRegisterDto userRegisterDto) {
+        try {
+            userService.registerNewUser(
+                    userRegisterDto.getUsername(),
+                    userRegisterDto.getPassword(),
+                    userRegisterDto.getEmail(),
+                    userRegisterDto.getBirthdate(),
+                    userRegisterDto.getAddress()
+            );
+            return ResponseEntity.ok("Congratulations, now u r a lamb family!");
+        } catch (Exception e) {
+        return ResponseEntity.badRequest().body("Beep- ☠️" + e.getMessage());}
     }
 
-public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }
