@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle ☠️ Admin 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/products.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+<div th:replace="~{fragments/header-admin::Header}" ></div>
+
+    <div class="container">
+        <a th:href="@{/admin-pd-new}" class="btn-write">Add a new product</a>
+        <div class="product">
+            <img th:src="@{img/pimg01.png}" alt="King Duck" />
+            <div class="details">
+                <h2>King Duck 🦆</h2>
+                <div class="order-date"><b>18-09-2024</b></div>
+
+                <div class="buttons">
+                    <button onclick="redirectToDetail()">Manage</button>
+                    <button onclick="confirmDelete()">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img th:src="@{img/pimg02.png}" alt="Mother Duck" />
+            <div class="details">
+                <h2>Mother Duck</h2>
+                <div class="order-date"><b>18-09-2024</b></div>
+
+                <div class="buttons">
+                    <button onclick="redirectToDetail()">Manage</button>
+                    <button onclick="confirmDelete()">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img th:src="@{img/pimg03.png}" alt="Go Back Home Duck" />
+            <div class="details">
+                <h2>Go Back Home Duck</h2>
+                <div class="order-date"><b>07-10-2024</b></div>
+
+                <div class="buttons">
+                    <button onclick="redirectToDetail()">Manage</button>
+                    <button onclick="confirmDelete()">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img th:src="@{img/pimg04.png}" alt="Muscle Duck" />
+            <div class="details">
+                <h2>Muscle Duck 💪🏻</h2>
+                <div class="order-date"><b>07-10-2024</b></div>
+                <div class="buttons">
+                    <button onclick="redirectToDetail()">Manage</button>
+                    <button onclick="confirmDelete()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function redirectToDetail() {
+        window.location.href = "admin-pd-mgmt.html";
+    }
+    function confirmDelete() {
+        if(confirm("Please don't forget me...")) {
+            alert("Poor things... Bye.");
+            window.location.href = "admin-pd-list.html";
+        }
+    }
+</script>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>

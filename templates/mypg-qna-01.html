@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle 🏰 QnA 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+  <link th:href="@{css/bbs-content.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div th:replace="~{fragments/header::Header}" ></div>
+
+<div class="container">
+  <h1 class="post-title">May I kill your ducks? 🦆</h1>
+  <div class="post-date">Posted on 18-09-2024</div>
+  <div class="post-content">
+    <p>Hello,<br><br>May I kill your ducks? Yoo Hoo~! Yay! 🥳🙌🏻</p>
+    <img th:src="@{img/qna.png}" width="300" />
+  </div>
+  <div class="post-actions">
+    <a th:href="@{/mypg-qna-edit}" class="btn btn-edit">Edit</a>
+    <a th:href="@{/mypg-qna-delete}" class="btn btn-delete">Delete</a>
+  </div>
+  <div class="replies">
+    <div class="replies-list">
+      <h3>Replies</h3><br>
+      <div class="reply">
+        <div class="reply-content">
+          <div class="reply-text">
+            <div class="reply-header">
+              <strong>Lamb Duck</strong>
+              <span class="reply-date">10-07-2024</span>
+            </div>
+            <p>Up to you. But I will block you filthy animal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle 🐑</title>
+
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <a th:href="@{/admin-nav}">
+        <img th:src="@{img/logo-admin.png}" />
+      </a>
+    </div>
+    <div class="nav-links">
+      <a th:href="@{/admin-users}">Users</a>
+      <a th:href="@{/admin-ph-list}">Products</a>
+      <a th:href="@{/admin-ntc-list}">Notice</a>
+      <a th:href="@{/shh}">Hidden Shop</a>
+    </div>
+  </nav>
+</header>
+</body>
+</html>

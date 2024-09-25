@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle 🏰 My Page 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/products.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div th:replace="~{fragments/header::Header}" ></div>
+
+    <div class="container">
+        <div class="product">
+            <img th:src="@{img/pimg01.png}" alt="King Duck" />
+            <div class="details">
+                <h2>King Duck 🦆</h2>
+                <div class="price"><h3>$59,000</h3></div>
+                <div class="quantity-delete">
+                    <input type="number" class="quantity-input" value="3"><br>
+                    <button id="delete-btn" class="btn delete-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img th:src="@{img/pimg03.png}" alt="Go Back Home Duck" />
+            <div class="details">
+                <h2>Go Back Home Duck</h2>
+                <div class="price"><h3>$88,000</h3></div>
+                <div class="quantity-delete">
+                    <input type="number" class="quantity-input" value="3"><br>
+                    <button class="btn delete-btn">Delete</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var deleteButton = document.getElementById('delete-btn');
+
+                deleteButton.addEventListener('click', function() {
+                    alert('Deleted successfully!');
+                    window.location.href = 'mypg-cart.html';
+                });
+            });
+        </script>
+
+    </div>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>
