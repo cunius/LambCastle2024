@@ -1,9 +1,9 @@
 # LambCastle2024
 
-### I'm Selling Lamb 🐑
+## I'm Selling Lamb 🐑
 
 ### Dependencies
-'''shell
+```shell
 Spring Boot DevTools
 Lombok
 Docker Compose Support
@@ -16,4 +16,4 @@ Spring Data JPA
 MySQL Driver
 Validation
 CycolneDX SBOM support
-'''
+```
