@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle 🏰 Notice 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/bbs-content.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div th:replace="~{fragments/header::Header}" ></div>
+
+<div class="container">
+  <h1 class="post-title">Welcome to Lamb Castle!</h1>
+  <div class="post-date">Posted on 18-09-2024</div>
+  <div class="post-content">
+    <p>Welcome to Lamb Castle. 🏰<br>I wish you all having a delicious lamb steak!<br>Cheers!<br><br>Do not hack my system. ☠️<br>I know who you are. 👻</p>
+      <img th:src="@{img/notice.jpg}" width="300" />
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>

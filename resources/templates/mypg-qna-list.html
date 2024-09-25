@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle 🏰 QnA 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/bbs-list.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div th:replace="~{fragments/header::Header}" ></div>
+
+<div class="board-container">
+    <a th:href="@{/mypg-qna-new}" class="btn-write">Write</a>
+    <div class="board-header">
+        <div class="board-number">No</div>
+        <div class="board-title">Title</div>
+        <div class="board-date">Date</div>
+    </div>
+
+    <div class="board-item">
+        <div class="board-number">1</div>
+        <div class="board-title">
+            <a th:href="@{/mypg-qna-01}">May I kill your ducks? 🦆</a>
+        </div>
+        <div class="board-date">18-09-2024</div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>

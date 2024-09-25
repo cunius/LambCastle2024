@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐑 Lamb Castle 🏰 King Duck 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/products.css}" rel="stylesheet" />
+    <link th:href="@{css/details.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="~{fragments/header::Header}" ></div>
+
+<div class="container">
+    <div class="product">
+        <img th:src="@{img/pimg01.png}" alt="King Duck" />
+
+        <div class="details">
+            <h2>King Duck 🦆</h2>
+            <div class="price"><b>$59,000</b></div>
+
+            <div class="buttons">
+                <a th:href="@{/mypg-cart}"><button>Cart</button></a>
+                <a th:href="@{/mypg-orders}"><button>Buy</button></a>
+            </div>
+
+            <div class="quantity">
+                <label for="quantity">Quantity:</label>
+                <select id="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="product-details">
+        <br><br><p>This duck is a King of duck. <br>You have a King, you have a duck, you are a king duck.</p><br><br>
+    </div>
+
+    <div class="reviews">
+        <div class="review-form">
+            <h3>My review</h3><br>
+            <textarea placeholder="Write a review."></textarea>
+            <input type="file" accept="image/*">
+            <button>Done</button><br><br><br>
+        </div>
+
+        <div class="reviews-list">
+            <h3>Reviews</h3><br>
+            <div class="review">
+                <div class="review-content">
+                    <img th:src="@{img/pimg01.png}" alt="Review img" />
+                    <div class="review-text">
+                        <div class="review-header">
+                            <strong>duckman</strong>
+                            <span class="review-date">10-07-2024</span>
+                        </div>
+                        <p>What a nice duck!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="review">
+                <div class="review-content">
+                    <img th:src="@{img/pimg01.png}" alt="Review img" />
+                    <div class="review-text">
+                        <div class="review-header">
+                            <strong>duckduckgo</strong>
+                            <span class="review-date">18-09-2024</span>
+                        </div>
+                        <p>Nice duck! I am a king!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+/*Product*/
+.product {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.product img {
+    width: 45%;
+    height: auto;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.details h2 {
+    margin-top: 75px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.details .price {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #4b09c8;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity label {
+    font-size: 16px;
+}
+
+.quantity select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+/*Cart, Buy*/
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.buttons button {
+    padding: 10px;
+    border: none;
+    background-color: #8d78f3;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.buttons button:hover {
+    background-color: #8d78f3;
+}
+
+/*Reviews*/
+.reviews {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.review-form,
+.reviews-list {
+    margin-bottom: 20px;
+}
+
+/*My Review*/
+.review-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.review-form input[type="file"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.review-form button {
+    padding: 10px 20px;
+    background-color: #8d78f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+    border-radius: 5px;
+}
+
+.review-form button:hover {
+    background-color: #6850df;
+}
+
+/*Review list*/
+.review {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.review-content {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+}
+
+.review img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.review-text {
+    flex: 1;
+}
+
+.review strong {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #666;
+    margin-left: 10px;
+}

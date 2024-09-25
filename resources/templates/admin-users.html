@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle ☠️ Admin 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/admin-users.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div th:replace="~{fragments/header-admin::Header}" ></div>
+
+  <div class="container">
+    <div class="user-list-container">
+      <div class="user-list-header">
+        <div class="user-list-checkbox">
+          <input type="checkbox" id="select">
+        </div>
+      <div class="user-list-name">Name</div>
+      <div class="user-list-address">Address</div>
+      <div class="user-list-date-date">Join Date</div>
+    </div>
+
+    <div class="user-list-item">
+      <div class="user-list-checkbox">
+        <input type="checkbox" name="user" value="1">
+      </div>
+      <div class="user-list-name">
+        <span>Lamb Steak</span>
+      </div>
+      <div class="user-list-address">187 Lamb Castle</div>
+      <div class="user-list-date">18-09-2024</div>
+    </div>
+
+      <div class="user-list-item">
+        <div class="user-list-checkbox">
+          <input type="checkbox" name="user" value="1">
+        </div>
+        <div class="user-list-name">
+          <span>Duckduck Go</span>
+        </div>
+        <div class="user-list-address">187 Duck Street</div>
+        <div class="user-list-date">18-09-2024</div>
+      </div>
+
+      <div class="user-list-item">
+        <div class="user-list-checkbox">
+          <input type="checkbox" name="user" value="1">
+        </div>
+        <div class="user-list-name">
+          <span>Shaun Sheep</span>
+        </div>
+        <div class="user-list-address">187 Sheep Street</div>
+        <div class="user-list-date">07-10-2024</div>
+      </div>
+  </div>
+    <button class="btn-block" id="block-btn">Block</button>
+    <script>
+      // Function to handle "Select" checkbox
+      document.getElementById('select').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('input[name="user"]');
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = this.checked;
+        });
+      });
+
+      // Function to handle "Block" button click
+      document.getElementById('block-btn').addEventListener('click', function() {
+        const selectedCheckboxes = document.querySelectorAll('input[name="user"]:checked');
+        const userIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
+
+        if (userIds.length === 0) {
+          alert('No users selected to block.');
+          return;
+        }
+
+        // Simulate a block action (e.g., sending data to a server)
+        alert(`Blocking users with IDs: ${userIds.join(', ')}`);
+    </script>
+
+    <div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>

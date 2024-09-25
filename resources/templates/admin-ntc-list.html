@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🐑 Lamb Castle ☠️ Notice 🐑</title>
+    <link th:href="@{css/main.css}" rel="stylesheet" />
+    <link th:href="@{css/bbs-list.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+<div th:replace="~{fragments/header-admin::Header}" ></div>
+
+  <div class="board-container">
+    <a th:href="@{/admin-ntc-new}" class="btn-write">Write</a>
+    <div class="board-header">
+      <div class="board-number">No</div>
+      <div class="board-title">Title</div>
+      <div class="board-date">Date</div>
+    </div>
+
+    <div class="board-item">
+      <div class="board-number">1</div>
+      <div class="board-title">
+        <a th:href="@{/admin-ntc-01}">Welcome to Lamb Castle!</a>
+      </div>
+      <div class="board-date">18-09-2024</div>
+    </div>
+
+    <div class="board-item">
+      <div class="board-number">2</div>
+      <div class="board-title">
+        <a th:href="@{/admin-ntc-02}">Kill 100k Lamb for lamb steak</a>
+      </div>
+      <div class="board-date">18-09-2024</div>
+    </div>
+
+    <div class="board-item">
+      <div class="board-number">3</div>
+      <div class="board-title">
+        <a th:href="@{/admin-ntc-03}">Yummy yummy yum yum install duck</a>
+      </div>
+      <div class="board-date">18-09-2024</div>
+    </div>
+
+    <div class="board-item">
+      <div class="board-number">4</div>
+      <div class="board-title">
+        <a th:href="@{/admin-ntc-04}">DuckDuckGo back home</a>
+      </div>
+      <div class="board-date">18-09-2024</div>
+    </div>
+  </div>
+
+<div th:replace="~{fragments/footer::Footer}" ></div>
+</body>
+</html>
