@@ -2,7 +2,7 @@
 
 ### I'm Selling Lamb 🐑
 
-### Setup
+### application.properties
 ```shell
 spring.application.name=****
 server.port=****
@@ -26,7 +26,7 @@ spring.resources.static-locations=classpath:/static/
 
 #Activate Debug log
 ```
-###compose.yaml
+### compose.yaml
 ```shell
 services:
   mysql:
