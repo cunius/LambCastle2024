@@ -1,42 +1,38 @@
-package com.lambcastle.lambcastle.config;
+package com.lamb.duck18.config;
 
-import com.lambcastle.lambcastle.service.MemberService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration // Spring에서 이 클라스가 설정 클라스로 사용됨을 명시
-@EnableWebSecurity // Spring Security 활성화
-@RequiredArgsConstructor //모든 필드에 대해 생성자를 자동으로 생성하는 Lombok annotation
-public class SecurityConfig /* 로그인 등 보안 기능 인증, 인가하는 Class */ {
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
 
-    private final MemberService memberService;
-
-    @Bean // Spring Security의 필터 체인을 구성하는 SecurityFilterChain Bean
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    // Spring Security의 로그인, 로그아웃 관련 설정 구성
-    	http.formLogin() // form 기반 인증 사용
-    		.loginPage("/login") // 로그인 페이지 경로 설정
-    		.defaultSuccessUrl("/") // 로그인 성공 시 이동할 기본 경로 설정
-    		.usernameParameter("email") //로그인 폼에서 사용자 이름으로 사용할 파라미터 설정 (email)
-    		.failureUrl("/login?error=true") // 로그인 실패 시 이동할 경로 설정, 에러 메시지 포함
-    	.and() // Method Chaining을 위한 연결
-    	.logout() // 로그아웃 설정 시작
-    		.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // 로그아웃 URL 설정
-    		.logoutSuccessUrl("/") // 로그아웃 성공 시 이동할 경로 설정
-    		.invalidateHttpSession(true) //로그아웃 시 세션 무효화
-    		.deleteCookies("JSESSIONID"); // 로그아웃 시 JSESSIONID 쿠키 삭제
-    	.and()
-    	.exceptionHandling()
-    		.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
-    	return http.build(); // 설정이 완료된 SecurityFilterChain 인스턴스 반환
+        http
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/", "/findpw", "/signup").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin((form) -> form
+                        .loginPage("/signin")
+                        .defaultSuccessUrl("/main", true)
+                        .permitAll()
+                )
+                .logout((logout) -> logout.permitAll());
+
+        return http.build();
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(); //Encoder using BCrypt
+    }
 }
