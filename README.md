@@ -2,8 +2,8 @@
 
 ## I'm Selling Lamb 🐑
 
-### Dependencies
 ```shell
+### Dependencies
 Spring Boot DevTools
 Lombok
 Docker Compose Support
