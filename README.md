@@ -1,9 +1,9 @@
 # LambCastle2024
 
-## I'm Selling Lamb 🐑
+### I'm Selling Lamb 🐑
 
-```shell
 ### Dependencies
+```shell
 Spring Boot DevTools
 Lombok
 Docker Compose Support
