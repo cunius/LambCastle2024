@@ -3,6 +3,7 @@
 ### I'm Selling Lamb 🐑
 
 ### Dependencies
+'''shell
 Spring Boot DevTools
 Lombok
 Docker Compose Support
@@ -15,3 +16,4 @@ Spring Data JPA
 MySQL Driver
 Validation
 CycolneDX SBOM support
+'''
