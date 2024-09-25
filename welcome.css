@@ -1,0 +1,15 @@
+/*Welcome logo*/
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .logo img {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: auto;
+    margin-right: 10px;
+    cursor: pointer;
+}

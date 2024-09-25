@@ -1,0 +1,136 @@
+/*Content*/
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.post-content {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/*Buttons*/
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-edit,
+.btn-delete {
+    background-color: #8d78f3;
+    color: white;
+    width: 100px;
+    text-align: center;
+    margin-right: 40px;
+    margin-top: 50px;
+}
+
+.reply-form button {
+    padding: 10px 20px;
+    background-color: #8d78f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+    border-radius: 5px;
+}
+
+.btn:hover,
+.reply-form button:hover {
+    background-color: #6850df;
+}
+
+/*qna - Replies*/
+.replies {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.reply-form,
+.reply-list {
+    margin-bottom: 20px;
+
+}
+
+.reply-form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.reply-form input[type="date"],
+.reply-form input[type="file"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.reply {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.reply-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.reply-content {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+}
+
+.reply img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.reply-text {
+    flex: 1;
+}
+
+.reply strong {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.reply-date {
+    font-size: 12px;
+    color: #666;
+    margin-left: 10px;
+}
