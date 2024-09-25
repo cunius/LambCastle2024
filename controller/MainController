@@ -1,0 +1,83 @@
+package com.lamb.duck18.controller;
+
+import com.lamb.duck18.entity.User;
+import com.lamb.duck18.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class MainController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/")
+    public String index() {return "signin";}
+    @GetMapping("/signin")
+    public String signin() {return "signin";}
+    @GetMapping("/findpw")
+    public String findpw() {return "findpw";}
+    @GetMapping("/signup")
+    public String signup() {return "signup";}
+
+    @PostMapping("/signup")
+    public String signupProcess(@RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam String birthdate, @RequestParam String address) {
+        userService.registerNewUser(username, password, email, birthdate, address);
+        return "redirect:/signin";
+    }
+
+    @GetMapping("/main")
+    public String main() {return "main";}
+
+
+    @GetMapping("/mypg")
+    public String mypg() {return "mypg";}
+    @GetMapping("/mypg-nav")
+    public String mypgnav() {return "mypg-nav";}
+    @GetMapping("/mypg-update")
+    public String mypgupdate() {return "mypg-update";}
+
+    @GetMapping("/mypg-orders")
+    public String mypgorders() {return "mypg-orders";}
+    @GetMapping("/mypg-orders-rfd")
+    public String mypgordersrfd() {return "mypg-orders-rfd";}
+    @GetMapping("/mypg-orders-trk")
+    public String mypgorderstrk() {return "mypg-orders-trk";}
+    @GetMapping("/mypg-cart")
+    public String mypgcart() {return "mypg-cart";}
+
+    @GetMapping("/mypg-qna-list")
+    public String mypgqnalist() {return "mypg-qna-list";}
+    @GetMapping("/mypg-qna-new")
+    public String mypgqnanew() {return "mypg-qna-new";}
+    @GetMapping("/ntc-list")
+    public String ntclist() {return "ntc-list";}
+
+    @GetMapping("/admin-nav")
+    public String adminnav() {return "admin-nav";}
+    @GetMapping("/admin-users")
+    public String adminusers() {return "admin-users";}
+
+    @GetMapping("/admin-pd-list")
+    public String adminpdlist() {return "admin-pd-list";}
+    @GetMapping("/admin-pd-new")
+    public String adminpdnew() {return "admin-pd-new";}
+    @GetMapping("/admin-pd-mgmt")
+    public String adminpdmgmt() {return "admin-pd-mgmt";}
+    @GetMapping("/admin-pd-edit")
+    public String adminpdedit() {return "admin-pd-edit";}
+
+    @GetMapping("/admin-ntc-list")
+    public String adminntclist() {return "admin-ntc-list";}
+    @GetMapping("/admin-ntc-new")
+    public String adminntcnew() {return "admin-ntc-new";}
+
+    @GetMapping("/shh")
+    public String shh() {return "shh";}
+
+}
