@@ -1,7 +1,9 @@
 package com.lamb.duck18.service;
 
+import com.lamb.duck18.dto.UserRegisterDto;
 import com.lamb.duck18.entity.User;
 import com.lamb.duck18.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,19 +23,14 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("Who r u? ☠️");
         }
         return user;
     }
 
-    public User registerNewUser(String username, String password, String email, String birthdate, String address) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setEmail(email);
-        user.setBirthdate(birthdate);
-        user.setAddress(address);
-        user.setRole("USER");
-        return userRepository.save(user);
+    public void registerNewUser(String username, String password, String email, String birthdate, String address) {
+
     }
-}
+
+    public void registerNewUser(@Valid UserRegisterDto userRegisterDto) {
+    }
