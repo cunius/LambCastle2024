@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -20,17 +20,53 @@ public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder; //pw encoder
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(email); //Finding username from userRepository
         if (user == null) {
             throw new UsernameNotFoundException("Who r u? ☠️");
         }
         return user;
     }
 
-    public void registerNewUser(String username, String password, String email, String birthdate, String address) {
-
-    }
-
     public void registerNewUser(@Valid UserRegisterDto userRegisterDto) {
+        validateUserRegisterDto(userRegisterDto);
+
+        if (userRegisterDto.getPassword() == null || userRegisterDto.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+
+        if (!userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())) {
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+
+        User user = new User();
+        user.setUsername(userRegisterDto.getUsername());
+        user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
+            user.setEmail(userRegisterDto.getEmail());
+            user.setBirthdate(userRegisterDto.getBirthdate());
+            user.setAddress(userRegisterDto.getAddress());
+            user.setRole("USER"); //basic role
+            userRepository.save(user); //Logic for registering new users
     }
+
+    private void validateUserRegisterDto(@Valid UserRegisterDto userRegisterDto) {
+        if (userRegisterDto.getPassword() == null || userRegisterDto.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+
+        if (!userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())) {
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+
+        if (userRepository.findByUsername(userRegisterDto.getUsername()) != null) {
+            throw new IllegalArgumentException("U were too late for this username. Why didn't u come earlier? 😕");
+        } //check username duplication
+    }
+
+    public void registerNewUser(String username, String password, String confirmPassword, String email, String birthdate) {
+    }
+
+    public boolean usernameExists(String username) {
+        return userRepository.findByUsername(username) != null;
+    }
+}
