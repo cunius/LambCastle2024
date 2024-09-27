@@ -1,0 +1,34 @@
+package com.lamb.duck18.controller;
+
+import com.lamb.duck18.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class AdminController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/admin-nav")
+    public String adminnav() {return "admin-nav";}
+    @GetMapping("/admin-users")
+    public String adminusers() {return "admin-users";}
+
+    @GetMapping("/admin-pd-list")
+    public String adminpdlist() {return "admin-pd-list";}
+    @GetMapping("/admin-pd-new")
+    public String adminpdnew() {return "admin-pd-new";}
+    @GetMapping("/admin-pd-mgmt")
+    public String adminpdmgmt() {return "admin-pd-mgmt";}
+    @GetMapping("/admin-pd-edit")
+    public String adminpdedit() {return "admin-pd-edit";}
+
+    @GetMapping("/admin-ntc-list")
+    public String adminntclist() {return "admin-ntc-list";}
+    @GetMapping("/admin-ntc-new")
+    public String adminntcnew() {return "admin-ntc-new";}
+
+    @GetMapping("/shh")
+    public String shh() {return "shh";}
+}
