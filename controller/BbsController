@@ -1,0 +1,37 @@
+package com.lamb.duck18.controller;
+
+import com.lamb.duck18.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class BbsController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/ntc-list")
+    public String ntclist() {return "ntc-list";}
+    @GetMapping("/ntc-01")
+    public String ntc01() {return "ntc-01";}
+
+    @GetMapping("/mypg-qna-list")
+    public String mypgqnalist() {return "mypg-qna-list";}
+    @GetMapping("/mypg-qna-new")
+    public String mypgqnanew() {return "mypg-qna-new";}
+    @GetMapping("/mypg-qna-01")
+    public String mypgqna() {return "mypg-qna-01";}
+    @GetMapping("/mypg-qna-edit")
+    public String mypgqnaedit() {return "mypg-qna-edit";}
+    @GetMapping("/mypg-qna-delete")
+    public String mypgqnadelete() {return "mypg-qna-delete";}
+
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+}
