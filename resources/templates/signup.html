@@ -9,43 +9,105 @@
 <body>
 <div th:replace="~{fragments/header-new::Header}" ></div>
 
-<form th:action="@{/signup}" method="post">
+<form th:action="@{/api/signup}" method="post">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <div class="container">
     <table>
       <tr>
         <td><h2>Processing to be the lamb... 🐑</h2></td>
       </tr>
-      <tr><td>Username</td></tr>
-      <tr><td><input type="text" class="text" required /></td></tr>
-      <tr><td>Password</td></tr>
-      <tr><td><input type="password" class="text" required /></td></tr>
-      <tr><td>Confirm Password</td></tr>
-      <tr><td><input type="password" class="text" required /></td></tr>
-      <tr><td>E-mail</td></tr>
-      <tr>
-        <td>
-          <div class="email-container">
-            <input type="text" class="email" required> @
-            <select>
-              <option>lamb.castle</option>
-              <option>gmail.com</option>
-            </select>
-          </div>
-        </td>
-      </tr>
-      <tr><td>DoB</td></tr>
-      <tr><td>
-        <input type="date" class="text" required></td></tr>
-      <tr><td>Address for your duck! 🦆</td></tr>
-      <tr><td><input type="text" class="text" required /></td></tr>
+
+        <tr><td>Username</td></tr>
+        <tr><td><input type="text" name="username" class="username" required /></td></tr>
+        <tr><td>Password</td></tr>
+        <tr><td><input type="password" name="password" class="password" required /></td></tr>
+        <tr><td>Confirm Password</td></tr>
+        <tr><td><input type="password" name="confirmPassword" class="password" required /></td></tr>
+        <tr><td>E-mail</td></tr>
+        <tr>
+          <td>
+            <div class="email-container">
+              <input type="text" name="email" class="email" required> @
+              <select>
+                <option>lamb.castle</option>
+                <option>gmail.com</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr><td>DoB</td></tr>
+        <tr><td>
+          <input type="date" name="birthdate" class="text" required></td></tr>
+        <tr><td>Address for your duck! 🦆</td></tr>
+        <tr><td><input type="text" name="address" class="text" required /></td></tr>
 
       <tr><td>
         <div class="btn-container">
-          <input type="submit" value="Sign up" class="btn" onclick="alert('Congratulations, Now u r a lamb family!')"></div>
+          <input type="submit" value="Sign up" class="btn"></div>
       </td></tr>
     </table>
   </div>
 </form>
+
+<script>
+  document.getElementById("signupForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // 기본 제출 방지
+
+    const formData = new FormData(this);
+
+    fetch('/signup', {
+      method: 'POST',
+      body: formData,
+    })
+            .then(response => {
+              if (response.ok) {
+                return response.text(); // 성공 시 메시지 반환
+              } else {
+                return response.json().then(data => { // JSON 형식으로 오류 처리
+                  throw new Error(data.message);
+                }).catch(() => {
+                  throw new Error("An unknown error occurred.");
+                });
+              }
+            })
+            .then(message => {
+              alert(message); // 성공 메시지 표시
+              window.location.href = "/main"; // 메인 페이지로 리다이렉트
+            })
+            .catch(error => {
+              alert(error.message); // 오류 메시지 표시
+            });
+  });
+</script>
+
+
+<!--<script>-->
+<!--  document.getElementById("signupForm").addEventListener("submit", function(event) {-->
+<!--    event.preventDefault();-->
+
+<!--    const formData = new FormData(this);-->
+
+<!--    fetch('/signup', {-->
+<!--      method: 'POST',-->
+<!--      body: formData,-->
+<!--    })-->
+<!--            .then(response => {-->
+<!--              return response.json().then(data => {-->
+<!--                if (!response.ok) {-->
+<!--                  throw new Error(data.message);-->
+<!--                }-->
+<!--                return data;-->
+<!--              });-->
+<!--            })-->
+<!--            .then(data => {-->
+<!--              alert(data.message);-->
+<!--              window.location.href = "/signin";-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--              alert(error.message);-->
+<!--            });-->
+<!--  });-->
+<!--</script>-->
 
 <div th:replace="~{fragments/footer::Footer}" ></div>
 </body>
