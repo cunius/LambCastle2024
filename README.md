@@ -8,14 +8,16 @@ spring.application.name=****
 server.port=****
 spring.jpa.open-in-view=true
 
-#DB
-spring.jpa.hibernate.ddl-auto=create
+#DB connect
 spring.jpa.defer-datasource-initialization=true
-spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase
-spring.datasource.username=****
-spring.datasource.password=****
+spring.datasource.url=jdbc:mysql://localhost:3306/duck18
+spring.datasource.username=myuser
+spring.datasource.password=secret
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.show-sql:true
+
+#Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
 
 #Cache
 spring.thymeleaf.cache=false
