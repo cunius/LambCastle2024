@@ -38,6 +38,11 @@ services:
       - 'MYSQL_USER=myuser'
     ports:
       - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
 ```
 ### Dependencies
 ```shell
