@@ -39,10 +39,10 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql //location to save db
 
 volumes:
-  db_data:
+  db_data: //Docker create db data automatically
 ```
 ### Dependencies
 ```shell
