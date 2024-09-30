@@ -1,0 +1,50 @@
+package com.lamb.duck18.controller;
+
+import com.lamb.duck18.dto.QnaDto;
+import com.lamb.duck18.entity.Qna;
+import com.lamb.duck18.service.QnaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/qna")
+public class QnaController {
+    @Autowired
+    private QnaService qnaService;
+
+    @GetMapping("/mypg-qna-list")
+    public ResponseEntity<List<Qna>> getAllQnas(){
+        List<Qna> qnaList = qnaService.getAllQnas();
+        return ResponseEntity.ok(qnaList);
+    }
+
+    @PostMapping(value = "/mypg-qna-new", consumes = "application/json")
+    public ResponseEntity<Qna> createQna(@RequestBody QnaDto qnaDto) {
+        Long userId = qnaDto.getUserId();
+        Qna createdQna = qnaService.createQna(qnaDto, userId);
+        return ResponseEntity.ok(createdQna);
+    }
+
+    @PutMapping("/mypg-qna-edit/{id}")
+    public ResponseEntity<Qna> updateQna(@PathVariable Long id, @RequestBody QnaDto qnaDto) {
+        Qna updatedQna = qnaService.updateQna(id, qnaDto);
+        Long userId = qnaDto.getUserId();
+        return ResponseEntity.ok(updatedQna);
+    }
+
+    @DeleteMapping("/mypg-qna-delete/{id}")
+    public ResponseEntity<Void> deleteQna(@PathVariable Long id) {
+        qnaService.deleteQna(id);
+        return ResponseEntity.noContent().build();
+    }
+
+//    @GetMapping("/mypg-qna-list")
+//    public String getQnaList(Model model) {
+//        List<Qna> qnaList = qnaService.getAllQnas();
+//        model.addAttribute("qnaList", qnaList);
+//        return "mypg-qna-list";
+//    }
+}
