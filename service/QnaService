@@ -1,0 +1,52 @@
+package com.lamb.duck18.service;
+
+import com.lamb.duck18.dto.QnaDto;
+import com.lamb.duck18.entity.Qna;
+import com.lamb.duck18.entity.User;
+import com.lamb.duck18.repository.QnaRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class QnaService {
+    @Autowired
+    private QnaRepository qnaRepository;
+
+    @Transactional
+    public Qna createQna(QnaDto qnaDto, Long userId) {
+        Qna qna = new Qna();
+        qna.setTitle(qnaDto.getTitle());
+        qna.setContent(qnaDto.getContent());
+        qna.setUserId(userId);
+//        qna.setCreatedAt(LocalDateTime.now());
+
+        User user = new User();
+        user.setId(userId);
+        qna.setUser(user);
+
+        return qnaRepository.save(qna);
+    }
+
+    public Qna updateQna(Long id, QnaDto qnaDto) {
+        Qna qna = qnaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No QnA found with id: " + id));
+        qna.setTitle(qnaDto.getTitle());
+        qna.setContent(qnaDto.getContent());
+        qna.setUpdatedAt(LocalDateTime.now());
+        return qnaRepository.save(qna);
+    }
+
+    public void deleteQna(Long id) {
+//        Qna qna = qnaRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("No QnA found with id: " + id));
+        qnaRepository.deleteById(id);
+    }
+
+    public List<Qna> getAllQnas() {
+        return qnaRepository.findAll();
+    }
+}
