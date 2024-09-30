@@ -1,0 +1,8 @@
+package com.lamb.duck18.repository;
+
+import com.lamb.duck18.entity.Qna;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface QnaRepository extends JpaRepository<Qna, Long> {
+
+}
