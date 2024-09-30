@@ -5,22 +5,26 @@
     <title>🐑 Lamb Castle 🏰 QnA 🐑</title>
     <link th:href="@{css/main.css}" rel="stylesheet" />
     <link th:href="@{css/bbs-postform.css}" rel="stylesheet" />
+    <link th:href="@{css/header.css}" rel="stylesheet" />
 
 </head>
 <body>
 <div th:replace="~{fragments/header::Header}" ></div>
+<form th:action="@{/api/qna/mypg-qna-new}" method="post" onsubmit="return handleSubmit(event)">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <input type="hidden" id="userId" name="userId" value="1" /> //Can't bring userId
 
 <div class="container">
     <!-- title -->
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" id="title" class="text-input" placeholder="Enter the title">
+        <input type="text" id="title" class="text-input" placeholder="Enter the title" required>
     </div>
 
     <!-- content -->
     <div class="form-group">
         <label for="content">Content</label>
-        <textarea id="content" class="textarea-input" rows="10" placeholder="Write your content here..."></textarea>
+        <textarea id="content" class="textarea-input" rows="10" placeholder="Write your content here..." required></textarea>
     </div>
 
     <!-- file upload -->
@@ -30,14 +34,49 @@
 
     <!-- button -->
     <div class="form-group">
-        <button class="btn" onclick="submitPost()">Submit</button>
+        <button class="btn" onclick="submitPost(event)">Submit</button>
     </div>
 </div>
+</form>
 
 <script>
-    function submitPost() {
-        alert('Could you wait 1000 years for me?...');
-        window.location.href = "mypg-qna-list.html";
+    function submitPost(event) {
+        event.preventDefault(); //prevent auto submit
+
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        const userId = document.getElementById('userId').value;
+        const csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+        //Data for POST Request
+        const data = {
+            title: title,
+            content: content,
+            userId: userId
+        };
+
+        console.log("Submitting data: ", data);
+
+        fetch('/api/qna/mypg-qna-new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify({title, content, userId}) //submit data including userId
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Could you wait 1000 years for me?...');
+                    window.location.href = "/api/qna/mypg-qna-list";
+                } else {
+                    alert('fuxk!');
+                }
+            })
+            .catch(error => {
+                console.error('Error', error);
+                alert('what the hell r u doing?')
+            });
     }
 </script>
 
