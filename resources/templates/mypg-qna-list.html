@@ -30,6 +30,30 @@
 </div>
 </form>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/api/qna/mypg-qna-list')
+            .then(response => response.json())
+            .then(data => {
+                const boardContainer = document.querySelector('.board-container');
+
+                data.forEach((qna, index) => {
+                    const boardItem = document.createElement('div');
+                    boardItem.className = 'board-item';
+                    boardItem.innerHTML = `
+                    <div class="board-number">${index + 1}</div>
+                    <div class="board-title">
+                        <a href="/mypg-qna-list/${qna.id}">${qna.title}</a>
+                    </div>
+                    <div class="board-date">${new Date(qna.createdAt).toLocaleDateString()}</div>
+                    `;
+                    boardContainer.appendChild(boardItem);
+                });
+            })
+            .catch(error => console.error('Error fetching QnA list:', error));
+    })
+</script>
+
 <div th:replace="~{fragments/footer::Footer}" ></div>
 </body>
 </html>
