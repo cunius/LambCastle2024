@@ -21,6 +21,12 @@ public class QnaController {
         return ResponseEntity.ok(qnaList);
     }
 
+    @GetMapping("/mypg-qna/{id}") //view QnA
+    public ResponseEntity<Qna> getQna(@PathVariable Long id){
+        Qna qna = qnaService.getQnaById(id);
+        return ResponseEntity.ok(qna);
+    }
+
     @PostMapping(value = "/mypg-qna-new", consumes = "application/json")
     public ResponseEntity<Qna> createQna(@RequestBody QnaDto qnaDto) {
         Long userId = qnaDto.getUserId();
