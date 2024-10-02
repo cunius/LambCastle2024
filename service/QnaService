@@ -40,6 +40,11 @@ public class QnaService {
         return qnaRepository.save(qna);
     }
 
+    public Qna getQnaById(Long id) {
+        return qnaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("No Qna found with id " + id));
+    }
+
     public void deleteQna(Long id) {
 //        Qna qna = qnaRepository.findById(id)
 //                .orElseThrow(() -> new IllegalArgumentException("No QnA found with id: " + id));
